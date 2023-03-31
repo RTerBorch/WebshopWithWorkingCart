@@ -43,7 +43,7 @@ function buildProduktCard(json) {
                  <!-- Product price-->
                  <div class="text-center">$${json.price}</div> 
                  
-                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="addToCart(${json.id}); console.log('Clicked product'); 
+                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="addToCartById(${json.id}); console.log('Clicked product'); 
                  ">add to cart</a></div>
                  </div>
         </div>
@@ -69,15 +69,137 @@ function showCart() {
   }
 }
 
-function addToCart(jasonId) {
+// Adds the jSon id to array
+function updateCartCount() {
   customerCart.push(jasonId);
   cartCount.textContent = customerCart.length;
 
-  let testTxt = ""
+  console.log(customerCart);
+}
 
-  customerCart.forEach(element => {
-    testTxt+= element+"<br>"
+// Fetch specifik item by the item ID ta bort?
+function fetchJsonFromApi(id) {
+  const productId = id;
+
+  fetch("https://fakestoreapi.com/products")
+    .then((response) => response.json())
+    .then((products) => {
+      const product = products.find((p) => p.id === productId);
+      if (product) {
+        // Do something with the product
+
+        console.log(product);
+      } else {
+        console.log(`Product with ID ${productId} not found.`);
+      }
+    })
+    .catch((error) => console.error(error));
+}
+
+// Fetch specifik item by the item ID and add to cart
+function addToCartById(id) {
+  const productId = id;
+
+  fetch("https://fakestoreapi.com/products")
+    .then((response) => response.json())
+    .then((products) => {
+      const product = products.find((p) => p.id === productId);
+      if (product) {
+        // Check if product is already in the cart
+        const existingProductIndex = customerCart.findIndex(
+          (p) => p.id === productId
+        );
+
+        if (existingProductIndex >= 0) {
+          // Product already in cart, increase amount
+          customerCart[existingProductIndex].amount++;
+        } else {
+          // Product not in cart, add to cart
+          customerCart.push({ ...product, amount: 1 });
+        }
+
+        // Update the cart count
+        const cartItemCount = customerCart.reduce(
+          (total, item) => total + item.amount,
+          0
+        );
+        cartCount.textContent = cartItemCount;
+
+        // Update the UI
+        renderCartItems();
+
+        console.log(customerCart);
+      } else {
+        console.log(`Product with ID ${productId} not found.`);
+      }
+    })
+    .catch((error) => console.error(error));
+}
+
+// Render cart items in the UI
+function renderCartItems() {
+  productsInCart.innerHTML = "";
+  let totalPrice = 0;
+
+  customerCart.forEach((product, index) => {
+    totalPrice += product.price * product.amount;
+    productsInCart.innerHTML += `
+      <li>
+        <img src="${product.image}" alt="${product.title}" style="width: 50px; height: 50px;">
+        ${product.title} - ${product.price} - Amount:
+        <button onclick="decreaseAmount(${index})">-</button>
+        ${product.amount}
+        <button onclick="increaseAmount(${index})">+</button>
+      </li>
+    `;
   });
+  productsInCart.innerHTML += `<button class="btn btn-outline-primary" onclick="checkout()">Checkout</button> <button class="btn btn-outline-danger btn-sm" onclick="clearCart()">Clear</button>`;
 
-  productsInCart.textContent = testTxt;
+  // Update the total price
+  document.getElementById("cartTotal").textContent = `$${totalPrice.toFixed(
+    2
+  )}`;
+}
+
+// Decrease the amount of a product in the cart
+function decreaseAmount(index) {
+  if (customerCart[index].amount > 1) {
+    customerCart[index].amount--;
+  } else {
+    customerCart.splice(index, 1);
+  }
+  updateCart();
+}
+
+// Increase the amount of a product in the cart
+function increaseAmount(index) {
+  customerCart[index].amount++;
+  updateCart();
+}
+
+// updates cartCount with the right a
+function updateCart() {
+  cartCount.textContent = cartCounter();
+  console.log(customerCart.length);
+  renderCartItems();
+}
+
+// count all the items per index and return that amount
+function cartCounter() {
+  let itemAmount = 0;
+  customerCart.forEach((product) => {
+    itemAmount += product.amount;
+  });
+  return itemAmount;
+}
+
+// Removes content of cart
+function clearCart() {
+  customerCart = [];
+  updateCart();
+}
+
+// Redirect to the checkout page
+function checkout() {
+  window.location.href = "checkout.html";
 }
