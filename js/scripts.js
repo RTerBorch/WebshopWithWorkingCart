@@ -214,9 +214,14 @@ function clearCart() {
 
 // Redirect to the checkout page
 function checkout() {
-  window.location.href = "checkout.html";
-  
+  const customerCart = JSON.parse(localStorage.getItem("customerCart"));
 
-
-
+  if (customerCart.length > 0) {
+    setTimeout(() => {
+      window.open("checkout.html", "_blank");
+    }, 500);
+  } else {
+    alert("Your cart is empty!");
+  }
+  console.log(customerCart);
 }

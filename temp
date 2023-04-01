@@ -103,7 +103,7 @@ function orderPage(id) {
   }, 500);
 }
 
-document.getElementById("submit").addEventListener("click", save);
+document.getElementById("checkout").addEventListener("click", save);
 
 document.getElementById("order-css").addEventListener("input", validate);
 
