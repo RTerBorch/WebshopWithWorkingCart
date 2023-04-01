@@ -12,6 +12,14 @@ function loadJSON() {
       });
     }
   };
+
+  // Load local storage into cart
+  const savedCart = localStorage.getItem("customerCart");
+  if (savedCart) {
+    customerCart = JSON.parse(savedCart);
+    renderCartItems();
+    cartCount.textContent = cartCounter();
+  }
 }
 
 // Builds all the product cards with json
@@ -118,6 +126,9 @@ function addToCartById(id) {
           customerCart.push({ ...product, amount: 1 });
         }
 
+        // Saves cart to local storage
+        localStorage.setItem("customerCart", JSON.stringify(customerCart));
+
         // Update the cart count
         const cartItemCount = customerCart.reduce(
           (total, item) => total + item.amount,
@@ -177,10 +188,12 @@ function increaseAmount(index) {
   updateCart();
 }
 
-// updates cartCount with the right a
+// updates cartCount with the right amount, also saves cart in localStorage
 function updateCart() {
   cartCount.textContent = cartCounter();
   console.log(customerCart.length);
+  localStorage.setItem("customerCart", JSON.stringify(customerCart));
+
   renderCartItems();
 }
 
@@ -202,4 +215,8 @@ function clearCart() {
 // Redirect to the checkout page
 function checkout() {
   window.location.href = "checkout.html";
+  
+
+
+
 }
