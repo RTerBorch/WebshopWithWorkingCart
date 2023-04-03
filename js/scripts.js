@@ -8,7 +8,7 @@ function loadJSON() {
       const json = JSON.parse(xhr.response);
 
       json.forEach((element) => {
-        buildProduktCard(element);
+        buildProductCard(element);
       });
     }
   };
@@ -23,7 +23,7 @@ function loadJSON() {
 }
 
 // Builds all the product cards with json
-function buildProduktCard(json) {
+function buildProductCard(json) {
   document.getElementById("output").innerHTML += `
         <div class="col-md-3 mb-5">
         <div class="card h-100">
@@ -85,26 +85,7 @@ function updateCartCount() {
   console.log(customerCart);
 }
 
-// Fetch specifik item by the item ID ta bort?
-function fetchJsonFromApi(id) {
-  const productId = id;
-
-  fetch("https://fakestoreapi.com/products")
-    .then((response) => response.json())
-    .then((products) => {
-      const product = products.find((p) => p.id === productId);
-      if (product) {
-        // Do something with the product
-
-        console.log(product);
-      } else {
-        console.log(`Product with ID ${productId} not found.`);
-      }
-    })
-    .catch((error) => console.error(error));
-}
-
-// Fetch specifik item by the item ID and add to cart
+// Fetch specific item by the item ID and add to cart
 function addToCartById(id) {
   const productId = id;
 
@@ -156,7 +137,8 @@ function renderCartItems() {
     totalPrice += product.price * product.amount;
     productsInCart.innerHTML += `
       <li>
-        <img src="${product.image}" alt="${product.title}" style="width: 50px; height: 50px;">
+        <img src="${product.image}" alt="${product.title}" 
+        style="width: 50px; height: 50px;">
         ${product.title} - ${product.price} - Amount:
         <button onclick="decreaseAmount(${index})">-</button>
         ${product.amount}
@@ -164,7 +146,9 @@ function renderCartItems() {
       </li>
     `;
   });
-  productsInCart.innerHTML += `<button class="btn btn-outline-primary" onclick="checkout()">Checkout</button> <button class="btn btn-outline-danger btn-sm" onclick="clearCart()">Clear</button>`;
+  productsInCart.innerHTML += `<button class="btn btn-outline-primary" 
+  onclick="checkout()">Checkout</button> <button class="btn btn-outline-danger btn-sm" 
+  onclick="clearCart()">Clear</button>`;
 
   // Update the total price
   document.getElementById("cartTotal").textContent = `$${totalPrice.toFixed(

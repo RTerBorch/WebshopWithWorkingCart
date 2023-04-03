@@ -13,7 +13,6 @@
       crossorigin="anonymous"
     />
 
-
     <title>Order Confirmation</title>
   </head>
 
@@ -26,32 +25,22 @@
           <h5 class="fw-bold">Order Confirmation</h5>
 
           <!-- Products inserted here -->
-          <div id = "products-container">
-          <div class="row">
-            <div id="product-name" class="col-6"><b>Product Name</b></div>
-            <div id="product-amount" class="col-3"><b>#</b></div>
-            <div id="price" class="col-3"><b>Price</b></div>
+          <div id="products-container">
+            <div class="row">
+              <div id="product-name" class="col-6"><b>Product Name</b></div>
+              <div id="product-amount" class="col-3"><b>#</b></div>
+              <div id="price" class="col-3"><b>Price</b></div>
+            </div>
+
+            <hr />
           </div>
-          
-          <hr>
-          
-          
-          
-          
-
-        </div>
-
-
-
-
-
 
           <div class="row">
             <div class="col-9">Shipping + Handling</div>
             <div class="col-3">$4.95</div>
           </div>
           <hr />
-         <!-- total summary -->
+          <!-- total summary -->
           <div class="row">
             <div class="fw-bold col-6">TOTAL</div>
             <div id="total-amount" class="fw-bold col-3">#</div>
@@ -89,6 +78,8 @@
     </div>
 
     <script src="js/checkout.js"></script>
-    <script>confirmationPage()</script>
+    <script>
+      confirmationPage();
+    </script>
   </body>
 </html>

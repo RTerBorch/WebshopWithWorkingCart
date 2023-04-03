@@ -1,11 +1,9 @@
 function loadCheckoutItems() {
   const customerCart = JSON.parse(localStorage.getItem("customerCart"));
   console.log(customerCart);
-  console.log(customerCart.length);
-  console.log(customerCart[0].price);
-
   let totalAmount = 0;
   let totalPrice = 0;
+
   for (i = 0; i < customerCart.length; i++) {
     totalAmount += customerCart[i].amount;
     totalPrice += customerCart[i].price * customerCart[i].amount;
@@ -108,7 +106,7 @@ function save() {
 }
 
 function confirmationPage() {
-  // Items
+  // Item data
   const customerCart = JSON.parse(localStorage.getItem("customerCart"));
 
   let totalAmount = 0;
@@ -133,7 +131,7 @@ function confirmationPage() {
   document.getElementById("total-price").innerHTML =
     "$" + totalPrice.toFixed(2);
 
-  // person
+  // person data
 
   const name = document.getElementById("name");
   const email = document.getElementById("e-mail");
