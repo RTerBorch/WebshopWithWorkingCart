@@ -1,35 +1,33 @@
-function testing() {
+function loadCheckoutItems() {
   const customerCart = JSON.parse(localStorage.getItem("customerCart"));
-
-  // Use the customerCart object as needed
   console.log(customerCart);
+  console.log(customerCart.length);
+  console.log(customerCart[0].price);
 
-  const image = document.getElementById("product-img");
-  const name = document.getElementById("product-name");
-  const price = document.getElementById("product-price");
-  const totalPrice = document.getElementById("total-price");
-  const productInfo = document.getElementById("product-info");
-  //product-info2
+  let totalAmount = 0;
+  let totalPrice = 0;
+  for (i = 0; i < customerCart.length; i++) {
+    totalAmount += customerCart[i].amount;
+    totalPrice += customerCart[i].price * customerCart[i].amount;
 
-  const image2 = document.getElementById("product-img2");
-  const name2 = document.getElementById("product-name2");
-  const price2 = document.getElementById("product-price2");
-  const totalPrice2 = document.getElementById("total-price2");
-  const productInfo2 = document.getElementById("product-info2");
-
-  productInfo.textContent = customerCart[0].description;
-  image.src = customerCart[0].image
-  price.textContent = `${customerCart[0].amount} x ${customerCart[0].price}`
-  name.textContent = customerCart[0].title;
-  totalPrice.textContent = "$2";
-
-  productInfo2.textContent = customerCart[1].description;
-  image2.src = customerCart[0].image
-  price2.textContent = `${customerCart[0].amount} x ${customerCart[0].price}`
-  name2.textContent = customerCart[0].title;
-  totalPrice2.textContent = "$2";
-
-
+    document.getElementById("cart-items").innerHTML +=
+      "<div class='row mt-1 pb-1 border-bottom'>" +
+      "<img class='col-2' style='width: 80px;' src='" +
+      customerCart[i].image +
+      "'>" +
+      "<div class='d-flex align-items-center col-8'>" +
+      customerCart[i].title +
+      "</div>" +
+      
+      "<div class='d-flex align-items-center col-1'>" +
+      customerCart[i].amount +
+      "</div>" +
+      "<div class='d-flex align-items-center col-1'>$" +
+      customerCart[i].price +
+      "</div>";
+  }
+  document.getElementById("cart-count").innerHTML = totalAmount;
+  document.getElementById("cart-total").innerHTML = "$" + totalPrice.toFixed(2);
 }
 
 document.getElementById("checkout").addEventListener("click", save);

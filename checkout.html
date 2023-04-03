@@ -8,57 +8,45 @@
     <title>Order-page</title>
   </head>
 
+  <style>
+    
+    
+  </style>
+
   <body id="order-body">
-    <div id="order-css" class="container" style="display: flex">
+    <div id="order-css" class="container">
       <div class="window">
         <div class="order-info">
           <div class="order-info-content">
             <h2>Order Summary</h2>
 
-            <table class="order-table">
-              <div class="line"></div>
-              <!-- products -->
-              <tbody>
-                <tr>
-                  <td>
-                    <img
-                      id="product-img"
-                      src="_"
-                      alt="Product Image"
-                      class="full-width"
-                    />
-                  </td>
-                  <td>
-                    <br />
-                    <span id="product-name" class="thin"></span>
-                    <br />
-                    <div id="product-info"></div>
-                    <br />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div id="product-price" class="price"></div>
-                  </td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="line"></div>
+            <div id="cart-items-container">
+              <div id="cart-items"></div>
+              
+              
+            </div>
+            
 
-
-
-            <div class="total">
-              <div class="line"></div>
-              <div style="float: left">
-                <div class="thin dense">Delivery</div>
-                TOTAL
+            <div id="total">
+              <!-- total amount of items -->
+              <div class="total-amount">
+                <div style="float: left;">Items in cart:</div>
+                <div style="float: right; text-align: right">
+                  <div id="cart-count"></div>
+                </div>
               </div>
-              <div style="float: right; text-align: right">
-                <div class="thin dense">$4.95</div>
-
-                <div id="total-price"></div>
+              <!-- total price -->
+              <div class="total">
+                <div style="float: left">Total:</div>
+                <div style="float: right; text-align: right">
+                  <div id="cart-total"></div>
+                </div>
               </div>
             </div>
+
+
+            
           </div>
         </div>
         <div class="credit-info">
@@ -115,9 +103,9 @@
     </div>
 
     <script src="js/checkout.js"></script>
-
+    <script src="js/scripts.js"></script>
     <script>
-      testing();
+      loadCheckoutItems();
     </script>
   </body>
 </html>

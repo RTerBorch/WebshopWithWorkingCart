@@ -11849,7 +11849,7 @@ fieldset:disabled .btn {
   position: absolute;
   bottom: 30px;
   right: 27px;
-  left: 35px;
+  left: 24px;
 }
 #order-css .dense {
   line-height: 1.2em;
@@ -11959,4 +11959,16 @@ fieldset:disabled .btn {
     border-radius: 0px;
   }
 }
+#cart-items-container {
+  height: 380px; /* set the height to the desired value */
+  overflow-y: scroll; /* enable vertical scrolling */
+  border: 1px solid #ccc; /* add a border for styling */
+  padding: 20px; /* add some padding to the container */
+}
+
+/* hide anything outside the cart-items-container */
+body {
+  overflow-x: hidden;
+}
+
 
