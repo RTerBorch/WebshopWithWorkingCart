@@ -218,7 +218,7 @@ function checkout() {
 
   if (customerCart.length > 0) {
     setTimeout(() => {
-      window.open("checkout.html", "_blank");
+      window.location.href = "checkout.html";
     }, 500);
   } else {
     alert("Your cart is empty!");

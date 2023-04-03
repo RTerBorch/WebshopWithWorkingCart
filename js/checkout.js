@@ -18,7 +18,6 @@ function loadCheckoutItems() {
       "<div class='d-flex align-items-center col-8'>" +
       customerCart[i].title +
       "</div>" +
-      
       "<div class='d-flex align-items-center col-1'>" +
       customerCart[i].amount +
       "</div>" +
@@ -103,7 +102,52 @@ function save() {
     localStorage.setItem("zip-code", document.getElementById("zip-code").value);
     localStorage.setItem("city", document.getElementById("city").value);
     setTimeout(() => {
-      window.open("confirmation-page.html", "_blank");
+      window.location.href = "confirmation-page.html";
     }, 500);
   }
+}
+
+function confirmationPage() {
+  // Items
+  const customerCart = JSON.parse(localStorage.getItem("customerCart"));
+
+  let totalAmount = 0;
+  let totalPrice = 0;
+  for (i = 0; i < customerCart.length; i++) {
+    totalAmount += customerCart[i].amount;
+    totalPrice += customerCart[i].price * customerCart[i].amount;
+
+    document.getElementById("products-container").innerHTML +=
+      "<div class='row'>" +
+      "<div id='product-name' class='col-6'>" +
+      customerCart[i].title +
+      "</div>" +
+      "<div id='product-amount' class='col-3'>" +
+      customerCart[i].amount +
+      "</div>" +
+      "<div id='price' class='col-3'>" +
+      customerCart[i].price +
+      "</div></div><br>";
+  }
+  document.getElementById("total-amount").innerHTML = totalAmount;
+  document.getElementById("total-price").innerHTML =
+    "$" + totalPrice.toFixed(2);
+
+  // person
+
+  const name = document.getElementById("name");
+  const email = document.getElementById("e-mail");
+  const phone = document.getElementById("phone");
+  const address = document.getElementById("address");
+  const zipCode = document.getElementById("zip-code");
+  const city = document.getElementById("city");
+
+  address.textContent = localStorage.getItem("address");
+  zipCode.textContent = localStorage.getItem("zip-code");
+  city.textContent = localStorage.getItem("city");
+  name.textContent = localStorage.getItem("name");
+  email.textContent = localStorage.getItem("e-mail");
+  phone.textContent = localStorage.getItem("phone");
+
+  localStorage.clear();
 }

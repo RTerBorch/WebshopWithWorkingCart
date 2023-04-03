@@ -13,6 +13,7 @@
       crossorigin="anonymous"
     />
 
+
     <title>Order Confirmation</title>
   </head>
 
@@ -24,14 +25,21 @@
         <div class="container">
           <h5 class="fw-bold">Order Confirmation</h5>
 
-          
+          <!-- Products inserted here -->
+          <div id = "products-container">
           <div class="row">
-            <div id="product-name" class="col-9">Product Name</div>
-            <div id="price" class="col-3">Price</div>
+            <div id="product-name" class="col-6"><b>Product Name</b></div>
+            <div id="product-amount" class="col-3"><b>#</b></div>
+            <div id="price" class="col-3"><b>Price</b></div>
           </div>
+          
+          <hr>
+          
+          
+          
+          
 
-
-
+        </div>
 
 
 
@@ -43,14 +51,14 @@
             <div class="col-3">$4.95</div>
           </div>
           <hr />
+         <!-- total summary -->
           <div class="row">
-            <div class="fw-bold col-9">TOTAL</div>
+            <div class="fw-bold col-6">TOTAL</div>
+            <div id="total-amount" class="fw-bold col-3">#</div>
             <div id="total-price" class="fw-bold col-3">Price</div>
           </div>
+
           <hr />
-          <div class="border rounded row bg-light">
-            <img id="image" class="p-3 w-50 mx-auto" alt="Product" src="_" />
-          </div>
           <div class="row">
             <div class="col-6">
               <div class="fw-bold">Delivery Address</div>
@@ -80,37 +88,7 @@
       </div>
     </div>
 
-    <script src="js/scripts.js"></script>
-    <script>
-      const image = document.getElementById("image");
-      const productName = document.getElementById("product-name");
-      const price = document.getElementById("price");
-      const shippingCost = 4.95;
-      const totalPrice = document.getElementById("total-price");
-
-      const name = document.getElementById("name");
-      const email = document.getElementById("e-mail");
-      const phone = document.getElementById("phone");
-      const address = document.getElementById("address");
-      const zipCode = document.getElementById("zip-code");
-      const city = document.getElementById("city");
-
-      totalPrice.textContent =
-        "$" + (parseInt(localStorage.getItem("priceData")) + shippingCost);
-      price.textContent = "$" + localStorage.getItem("priceData");
-      productName.textContent = localStorage.getItem("nameData");
-      image.src = localStorage.getItem("imgData");
-
-      address.textContent = localStorage.getItem("address");
-      zipCode.textContent = localStorage.getItem("zip-code");
-      city.textContent = localStorage.getItem("city");
-
-      name.textContent = localStorage.getItem("name");
-      email.textContent = localStorage.getItem("e-mail");
-      phone.textContent = localStorage.getItem("phone");
-
-      // remove all local storage so customer can shop again.
-      localStorage.clear();
-    </script>
+    <script src="js/checkout.js"></script>
+    <script>confirmationPage()</script>
   </body>
 </html>
