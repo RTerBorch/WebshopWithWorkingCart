@@ -40,20 +40,7 @@
         <!-- Shoppingcart -->
         <button class="btn btn-outline-dark" type="button" id="cartBtn">
           <!-- icon -->
-          <i class="bi-cart-fill me-1">
-            <div id="cart" style="display: none">
-              <h5>Your products</h5>
-              <ul id="productsInCart"></ul>
-              <p>
-                Total:
-                <span
-                  class="badge bg-dark text-white ms-1 rounded-pill"
-                  id="cartTotal"
-                  >$0.00</span
-                >
-              </p>
-            </div>
-          </i>
+          <i class="bi-cart-fill me-1"> </i>
           Cart
           <!-- Button that count amount of products -->
           <span
@@ -65,12 +52,31 @@
       </div>
     </nav>
 
+    <div
+      id="cart"
+      class="position-fixed top-9 end-0"
+      style="display: none; border: 1px solid #060505"
+    >
+      <div class="cart-dropdown-content">
+        <h5>Your products</h5>
+        <ul id="productsInCart"></ul>
+        <p>
+          Total:
+          <span
+            class="badge bg-dark text-white ms-1 rounded-pill"
+            id="cartTotal"
+            >$0.00</span
+          >
+        </p>
+      </div>
+    </div>
+
     <!-- Header-->
-    <header class="bg-dark py-5">
+    <header class="bg-dark py-2">
       <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-          <h1 class="display-4 fw-bolder">Webshop</h1>
-          <p class="lead fw-normal text-white-50 mb-0">Robin´s Webshop</p>
+          <h1 class="display-5 fw-bolder">Rob-shop</h1>
+          <p class="lead fw-normal text-white-50 mb-0">All you can wish for, and</p>
         </div>
       </div>
     </header>

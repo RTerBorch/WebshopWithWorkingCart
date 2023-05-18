@@ -4317,6 +4317,14 @@ fieldset:disabled .btn {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+.navbar.fixed-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.navbar.navbar-light {
+  background-color: #f8f9fa;
+}
 .navbar > .container,
 .navbar > .container-fluid,
 .navbar > .container-sm,
@@ -7143,6 +7151,10 @@ fieldset:disabled .btn {
 
 .top-0 {
   top: 0 !important;
+}
+
+.top-9 {
+  top: 9.5% !important;
 }
 
 .top-50 {
@@ -11754,7 +11766,8 @@ fieldset:disabled .btn {
   width: 100%;
 }
 #order-css .half-input-table td:first-of-type {
-  border-right: 10px solid #4488dd; }
+  border-right: 10px solid #4488dd;
+}
 
 #order-css .color-red {
   color: red;
@@ -11970,5 +11983,11 @@ fieldset:disabled .btn {
 body {
   overflow-x: hidden;
 }
-
-
+#cart {
+  position: fixed;
+  top: 100%;
+  right: 0;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.943);
+  padding: 10px;
+}
